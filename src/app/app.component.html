@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!--<div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -17,4 +17,24 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
-
+-->
+<section class="todoapp">
+  <header class="header">
+    <h1>Todos</h1>
+    <input class="new-todo" placeholder="Enter a todo" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+    </header>
+    <section class="main" *ngIf="todos.length>0">
+      <ul class="view">
+        <li *ngFor="let todo of todos" [class.completed]="todo.complete">
+          <div class="view">
+            <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+            <label>{{todo.title}}</label>
+            <button class="destroy" (click)="deleteTodoById(todo.id)"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" *ngIf="todos.length>0">
+      <span class="todo-count"><strong>{{todos.length}}</strong>{{todos.length==1?' item':' items'}}</span>
+    </footer>
+</section>
