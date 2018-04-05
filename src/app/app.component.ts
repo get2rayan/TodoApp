@@ -6,30 +6,28 @@ import { TodoDataService } from './services/todo-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['../assets/css/app.css', '../assets/css/todomvc-app.css', '../assets/css/todomvc-common.css'],
-  providers:[TodoDataService]
+  styleUrls: ['./app.component.css'],
+  providers:[]
 })
 export class AppComponent implements OnInit{
   title = 'app';
   
-  @Input()
-  newTodo:Todo;
-
   constructor(private todoDataService:TodoDataService){    
-    this.newTodo=new Todo();    
   }
 
   ngOnInit(){
     //this.todoDataService=new TodoDataService();
   }
   
+  //@Output()
   get todos() {
     return this.todoDataService.todos;
   }
 
-  addTodo(){
-    this.todoDataService.addTodo(this.newTodo);
-    this.newTodo=new Todo();
+  onAddTodo(todo:Todo){
+    this.todoDataService.addTodo(todo);
+    //this.todoDataService.addTodo(this.newTodo);
+    //this.newTodo=new Todo();
   }
 
   toggleTodoComplete(todo:Todo){

@@ -19,22 +19,7 @@
 </ul>
 -->
 <section class="todoapp">
-  <header class="header">
-    <h1>Todos</h1>
-    <input class="new-todo" placeholder="Enter a todo" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
-    </header>
-    <section class="main" *ngIf="todos.length>0">
-      <ul class="view">
-        <li *ngFor="let todo of todos" [class.completed]="todo.complete">
-          <div class="view">
-            <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-            <label>{{todo.title}}</label>
-            <button class="destroy" (click)="deleteTodoById(todo.id)"></button>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <footer class="footer" *ngIf="todos.length>0">
-      <span class="todo-count"><strong>{{todos.length}}</strong>{{todos.length==1?' item':' items'}}</span>
-    </footer>
+   <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
+    <app-todo-list [todos]="todos" (todoToggle)="toggleTodoComplete($event)" (todoRemove)="deleteTodoById($event)"></app-todo-list>
+    <app-todo-list-footer [todos]="todos"></app-todo-list-footer>
 </section>

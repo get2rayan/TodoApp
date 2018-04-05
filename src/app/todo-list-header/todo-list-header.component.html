@@ -1,0 +1,5 @@
+<header class="header">
+    <h1>Todos</h1>
+    <input class="new-todo" placeholder="Enter a todo" [ngModel]="newTodo?.title" 
+    (ngModelChange)="newTodo.title=$event" (keyup.enter)="addTodo()">
+</header>
